@@ -1,0 +1,7 @@
+name = "langchain-workers"
+main = "src/index.js"
+compatibility_date = "2023-04-25"
+
+[vars]
+OPENAI_API_KEY = "YOUR_API_KEY"
+
