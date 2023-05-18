@@ -17,7 +17,7 @@ import { RetrievalQAChain } from "langchain/chains";
 export default {
     async fetch(request, env, ctx) {
         const loader = new CheerioWebBaseLoader(
-          "https://www.rickyrobinett.com"
+            "https://en.wikipedia.org/wiki/Brooklyn"
         );
         const docs = await loader.loadAndSplit();
         console.log(docs);
