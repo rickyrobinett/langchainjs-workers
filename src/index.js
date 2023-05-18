@@ -17,7 +17,7 @@ import { RetrievalQAChain } from "langchain/chains";
 export default {
     async fetch(request, env, ctx) {
         const loader = new CheerioWebBaseLoader(
-          "https://en.wikipedia.org/wiki/Brooklyn"
+          "https://www.rickyrobinett.com"
         );
         const docs = await loader.loadAndSplit();
         console.log(docs);
@@ -27,7 +27,8 @@ export default {
         const model = new OpenAI({ openAIApiKey: env.OPENAI_API_KEY });
         const chain = RetrievalQAChain.fromLLM(model, store.asRetriever());
 
-        const question = "Your an an API. Return information in JSON format based on the following request url: " + request.url
+        const { searchParams } = new URL(request.url);
+        const question = searchParams.get('question') ?? "What is this article about? Can you give me 3 facts about it?";
 
         const res = await chain.call({
             query: question,
